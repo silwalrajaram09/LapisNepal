@@ -1,0 +1,29 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "courses": "Courses",
+    "licenses": "Licenses",
+    "staff": "Staff",
+    "timetable": "Timetable",
+    "contact": "Contact"
+  },
+  "apply": "Apply now",
+  "tagline": "Study Abroad/Japan & Language Institute",
+  "footer": {
+    "company": "Lapis Nepal Consultancy",
+    "description": "Study abroad & language institute\nKathmandu, Nepal · Est. 2014",
+    "programmes": "Programmes",
+    "companyMenu": "Company",
+    "contact": "Contact",
+    "nepalOffice": "Nepal office",
+    "japanOffice": "Japan office",
+    "license": "Licensed by MoE Nepal & Japan"
+  },
+  "courses": {
+    "japanese": "Japanese language",
+    "ssw": "SSW curriculum",
+    "titp": "TITP curriculum",
+    "internship": "Internship"
+  }
+}

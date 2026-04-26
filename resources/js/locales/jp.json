@@ -1,0 +1,29 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "about": "私たちについて",
+    "courses": "コース",
+    "licenses": "ライセンス",
+    "staff": "スタッフ",
+    "timetable": "時間割",
+    "contact": "お問い合わせ"
+  },
+  "apply": "申し込む",
+  "tagline": "日本留学・語学学校",
+  "footer": {
+    "company": "ラピスネパール",
+    "description": "留学と語学学校\nカトマンズ・ネパール",
+    "programmes": "プログラム",
+    "companyMenu": "会社情報",
+    "contact": "連絡先",
+    "nepalOffice": "ネパールオフィス",
+    "japanOffice": "日本オフィス",
+    "license": "ネパール教育省認可"
+  },
+  "courses": {
+    "japanese": "日本語コース",
+    "ssw": "特定技能",
+    "titp": "技能実習",
+    "internship": "インターンシップ"
+  }
+}
