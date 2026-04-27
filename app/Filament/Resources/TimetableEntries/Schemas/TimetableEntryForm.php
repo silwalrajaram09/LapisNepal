@@ -6,8 +6,9 @@ use Filament\Schemas\Schema;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
-use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Grid;
 
 class TimetableEntryForm
 {
@@ -15,57 +16,98 @@ class TimetableEntryForm
     {
         return $schema
             ->components([
+
+                
                 Section::make('Basic Information')
                     ->schema([
-                        Select::make('programme')
-                            ->options([
-                                'Japanese language' => 'Japanese language',
-                                'SSW' => 'SSW',
-                                'TITP' => 'TITP',
-                                'Internship' => 'Internship',
-                            ])->required(),
-                        Select::make('level')
-                            ->options([
-                                '1' => 'Level 1',
-                                '2' => 'Level 2',
-                                '3' => 'Level 3',
-                                '4' => 'Level 4',
-                                '5' => 'Level 5',
-                                '6' => 'Level 6',
-                                '7' => 'Level 7',
-                                '8' => 'Level 8',
-                            ])->required(),
+                        Grid::make(2)->schema([
+
+                            Select::make('programme')
+                                ->label('Programme')
+                                ->options([
+                                    'japanese' => 'Japanese Language',
+                                    'ssw' => 'SSW Curriculum',
+                                    'titp' => 'TITP Curriculum',
+                                    'internship' => 'Internship',
+                                ])
+                                ->required()
+                                ->native(false),
+
+                            Select::make('level')
+                                ->label('Level')
+                                ->options([
+                                    'N5 foundation' => 'N5 Foundation',
+                                    'N4 elementary' => 'N4 Elementary',
+                                    'N3 intermediate' => 'N3 Intermediate',
+                                    'N2 advanced' => 'N2 Advanced',
+                                ])
+                                ->required()
+                                ->native(false),
+
+                        ]),
+
                         Select::make('days')
+                            ->label('Days')
                             ->options([
-                                'Monday' => 'Monday',
-                                'Tuesday' => 'Tuesday',
-                                'Wednesday' => 'Wednesday',
-                                'Thursday' => 'Thursday',
-                                'Friday' => 'Friday',
-                                'Saturday' => 'Saturday',
-                                'Sunday' => 'Sunday',
-                                'Mon/Wed/Fri' => 'Mon/Wed/Fri (MWF)',
-                                'Tue/Thu' => 'Tue/Thu (TTH)',
-                                'Mon-Fri' => 'Monday - Friday',
-                            ])->required(),
-                        TimePicker::make('time')->required(),
+                                'sun-fri' => 'Sunday – Friday',
+                                'mon-fri' => 'Monday – Friday',
+                                'mwf' => 'Mon / Wed / Fri',
+                                'tth' => 'Tue / Thu',
+                                'weekend' => 'Saturday – Sunday',
+                            ])
+                            ->required()
+                            ->native(false),
+
+                        Grid::make(2)->schema([
+
+                            TimePicker::make('start_time')
+                                ->label('Start Time')
+                                ->seconds(false)
+                                ->required(),
+
+                            TimePicker::make('end_time')
+                                ->label('End Time')
+                                ->seconds(false)
+                                ->required(),
+
+                        ]),
                     ]),
-                
+
+              //shedule details 
                 Section::make('Schedule Details')
                     ->schema([
-                        TextInput::make('batch_label')->required(),
-                        TextInput::make('instructor')->required(),
+                        Grid::make(2)->schema([
+
+                            TextInput::make('batch_label')
+                                ->label('Batch Name')
+                                ->placeholder('Morning A, Evening B')
+                                ->required()
+                                ->maxLength(50),
+
+                            TextInput::make('instructor')
+                                ->label('Instructor Name')
+                                ->required()
+                                ->maxLength(100),
+
+                        ]),
+
                         Select::make('status')
+                            ->label('Class Status')
                             ->options([
                                 'open' => 'Open',
                                 'filling' => 'Filling',
-                                'full' => 'Full'
-                            ])->required(),
+                                'full' => 'Full',
+                            ])
+                            ->required()
+                            ->native(false),
                     ]),
-                
+
+                //settings 
                 Section::make('Settings')
                     ->schema([
-                        Toggle::make('is_visible')->default(true),
+                        Toggle::make('is_visible')
+                            ->label('Visible on Website')
+                            ->default(true),
                     ]),
             ]);
     }

@@ -44,10 +44,15 @@ class TimetableEntriesTable
                     ->sortable()
                     ->weight('medium'),
                     
-                TextColumn::make('time')
-                    ->searchable()
-                    ->sortable()
-                    ->weight('medium'),
+                TextColumn::make('start_time')
+                    ->label('Start')
+                    ->time('H:i')
+                    ->sortable(),
+
+                TextColumn::make('end_time')
+                    ->label('End')
+                    ->time('H:i')
+                    ->sortable(),
                     
                 TextColumn::make('batch_label')
                     ->label('Batch')
@@ -56,7 +61,7 @@ class TimetableEntriesTable
                     ->limit(20)
                     ->tooltip(function (TextColumn $column): ?string {
                         $state = $column->getState();
-                        if (strlen($state) > 20) {
+                        if (strlen($state ?? '') > 20) {
                             return $state;
                         }
                         return null;
@@ -95,24 +100,19 @@ class TimetableEntriesTable
             ->filters([
                 SelectFilter::make('programme')
                     ->options([
-                        'BSc CSIT' => 'BSc CSIT',
-                        'BCA' => 'BCA',
-                        'BIT' => 'BIT',
-                        'BSc Physics' => 'BSc Physics',
-                        'BSc Maths' => 'BSc Maths',
+                        'japanese' => 'Japanese Language',
+                        'ssw' => 'SSW Curriculum',
+                        'titp' => 'TITP Curriculum',
+                        'internship' => 'Internship',
                     ])
                     ->searchable(),
                     
                 SelectFilter::make('level')
                     ->options([
-                        '1' => 'Level 1',
-                        '2' => 'Level 2',
-                        '3' => 'Level 3',
-                        '4' => 'Level 4',
-                        '5' => 'Level 5',
-                        '6' => 'Level 6',
-                        '7' => 'Level 7',
-                        '8' => 'Level 8',
+                        'N5 foundation' => 'N5 Foundation',
+                        'N4 elementary' => 'N4 Elementary',
+                        'N3 intermediate' => 'N3 Intermediate',
+                        'N2 advanced' => 'N2 Advanced',
                     ])
                     ->searchable(),
                     
@@ -126,16 +126,11 @@ class TimetableEntriesTable
                 SelectFilter::make('days')
                     ->label('Day(s)')
                     ->options([
-                        'Monday' => 'Monday',
-                        'Tuesday' => 'Tuesday',
-                        'Wednesday' => 'Wednesday',
-                        'Thursday' => 'Thursday',
-                        'Friday' => 'Friday',
-                        'Saturday' => 'Saturday',
-                        'Sunday' => 'Sunday',
-                        'Mon/Wed/Fri' => 'Mon/Wed/Fri',
-                        'Tue/Thu' => 'Tue/Thu',
-                        'Mon-Fri' => 'Monday - Friday',
+                        'sun-fri' => 'Sunday – Friday',
+                        'mon-fri' => 'Monday – Friday',
+                        'mwf' => 'Mon / Wed / Fri',
+                        'tth' => 'Tue / Thu',
+                        'weekend' => 'Saturday – Sunday',
                     ]),
                     
                 TernaryFilter::make('is_visible')
@@ -143,9 +138,6 @@ class TimetableEntriesTable
                     ->trueLabel('Visible Only')
                     ->falseLabel('Hidden Only')
                     ->placeholder('All Entries'),
-                    
-                // TrashedFilter::make()
-                //     ->label('Deleted Records'),
             ])
             ->recordActions([
                 EditAction::make(),

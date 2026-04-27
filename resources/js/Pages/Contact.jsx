@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage, Head } from "@inertiajs/react";
 import AppLayout from "@/layouts/AppLayouts";
-import { Head } from "@inertiajs/react";
 import HeroSlider from "@/Components/HeroSlider";
+
 export default function Contact() {
+    const { flash } = usePage().props;
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
         email: "",
@@ -49,6 +50,23 @@ export default function Contact() {
                     <h2 className="text-base font-medium mb-4">
                         Send us a message
                     </h2>
+
+                    {flash?.success && (
+                        <div className="mb-6 p-5 bg-green-50 border border-green-100 rounded-2xl flex items-start gap-4 animate-in fade-in slide-in-from-top-4 duration-500">
+                            <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center shrink-0 shadow-sm">
+                                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 className="text-sm font-semibold text-green-900 mb-0.5">Message Sent!</h3>
+                                <p className="text-xs text-green-700 leading-relaxed">
+                                    {flash.success} Our team will get back to you shortly.
+                                </p>
+                            </div>
+                        </div>
+                    )}
+
                     <form
                         onSubmit={submit}
                         className="border border-gray-100 rounded-xl p-5 flex flex-col gap-3"
@@ -133,9 +151,23 @@ export default function Contact() {
                         <button
                             type="submit"
                             disabled={processing}
-                            className="w-full bg-blue-700 text-white text-sm font-medium py-2.5 rounded-lg disabled:opacity-60"
+                            className={`w-full text-white text-sm font-semibold py-3 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 ${
+                                processing 
+                                ? "bg-gray-400 cursor-not-allowed" 
+                                : "bg-blue-700 hover:bg-blue-800 hover:shadow-lg active:scale-[0.98]"
+                            }`}
                         >
-                            {processing ? "Sending…" : "Send message"}
+                            {processing ? (
+                                <>
+                                    <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Sending...
+                                </>
+                            ) : (
+                                "Send Message"
+                            )}
                         </button>
                         <a
                             href="https://wa.me/9779805682958"

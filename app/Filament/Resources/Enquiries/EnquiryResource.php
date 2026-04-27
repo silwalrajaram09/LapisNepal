@@ -43,7 +43,6 @@ class EnquiryResource extends Resource
     {
         return [
             'index' => ListEnquiries::route('/'),
-            'create' => CreateEnquiry::route('/create'),
             'edit' => EditEnquiry::route('/{record}/edit'),
         ];
     }
