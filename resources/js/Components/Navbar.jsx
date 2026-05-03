@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link, usePage } from "@inertiajs/react";
+import { useTranslation } from 'react-i18next';
 // import route from 'ziggy-js';
 
 const Navbar = () => {
+    const {t}= useTranslation()
     const [isOpen, setIsOpen] = useState(false);
     const [openDropdown, setOpenDropdown] = useState(null);
     const { url } = usePage();

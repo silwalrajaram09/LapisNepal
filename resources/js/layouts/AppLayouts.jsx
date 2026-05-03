@@ -3,26 +3,22 @@ import { Link, usePage } from "@inertiajs/react";
 import WhatsAppButton from "../Components/WhatsAppButton";
 import useSmoothScroll from "../../hooks/useSmoothScroll";
 import { useTranslation } from "react-i18next";
-import i18n from "../i18n";
+import LanguageSwitcher from "../Components/LanguageSwitcher";
+
 export default function AppLayout({ children }) {
     useSmoothScroll();
     const { url } = usePage();
     const { t, i18n } = useTranslation();
     const navLinks = [
-        { label: "Home", href: "/" },
-        { label: "About", href: "/about" },
-        { label: "Courses", href: "/courses" },
-        { label: "Licenses", href: "/licenses" },
-        { label: "Staff", href: "/staff" },
-        { label: "Timetable", href: "/timetable" },
-        { label: "Contact", href: "/contact" },
+        { label: t("nav.home"), href: "/" },
+        { label: t("nav.about"), href: "/about" },
+        { label: t("nav.courses"), href: "/courses" },
+        { label: t("nav.licenses"), href: "/licenses" },
+        // { label: t("nav.staff"), href: "/staff" },
+        { label: t("nav.timetable"), href: "/timetable" },
+        { label: t("nav.contact"), href: "/contact" },
     ];
     // const [toggle ,setToggle] = React.useState(false)
-    const toggleLanguage = () => {
-        const currentLang = i18n.language;
-        const newLang = currentLang === "en" ? "日本語" : "en";
-        i18n.changeLanguage(newLang); // ✅ FIXED
-    };
 
     return (
         <div className="min-h-screen flex flex-col">
@@ -36,10 +32,10 @@ export default function AppLayout({ children }) {
                     </div>
                     <div>
                         <div className="text-2xl font-bold leading-tight">
-                            Lapis Nepal
+                            {t("nav.logo-text")}
                         </div>
                         <div className="text-[11px] text-gray-400">
-                            Study Abroad/Japan &amp; Language Institute
+                            {t("tagline")}
                         </div>
                     </div>
                 </Link>
@@ -63,12 +59,7 @@ export default function AppLayout({ children }) {
 
                 <div className="flex items-center gap-3">
                     {/* // Language toggle (for demonstration, toggles between English and Japanese) */}
-                    <button
-                        onClick={toggleLanguage}
-                        className="text-xs text-gray-500 hover:text-gray-900 transition-colors"
-                    >
-                        {i18n.language === "en" ? "日本語" : "EN"}
-                    </button>
+                    <LanguageSwitcher />
                     {/* <span className="text-xs text-gray-400 hidden lg:block">
                         9805682958
                     </span> */}
@@ -76,7 +67,7 @@ export default function AppLayout({ children }) {
                         href="/contact"
                         className="bg-blue-700 text-white text-[13px] font-medium px-4 py-1.5 rounded-lg"
                     >
-                        Apply now
+                        {t("apply")}
                     </Link>
                 </div>
             </nav>
@@ -123,7 +114,7 @@ export default function AppLayout({ children }) {
                             heading: "Company",
                             links: [
                                 { label: "About us", href: "/about" },
-                                { label: "Our staff", href: "/staff" },
+                                { label: "Courses", href: "/courses" },
                                 { label: "Licenses", href: "/licenses" },
                                 { label: "Timetable", href: "/timetable" },
                             ],

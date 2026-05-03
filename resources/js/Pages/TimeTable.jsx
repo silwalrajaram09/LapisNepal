@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import AppLayout from '@/layouts/AppLayouts'
 import { Head } from '@inertiajs/react'
+import { motion, AnimatePresence } from 'framer-motion'
 const classes = [
   { programme:'Japanese language', level:'N5 foundation', days:'Sun–Fri', time:'7:00–9:00 am',    batch:'Morning A', batchColor:'bg-blue-50 text-blue-800',   instructor:'Tanaka Sensei',  status:'Open',   statusColor:'bg-green-50 text-green-800', cat:['morning','japanese'] },
   { programme:'Japanese language', level:'N4 elementary', days:'Sun–Fri', time:'5:00–7:00 pm',    batch:'Evening A', batchColor:'bg-blue-50 text-blue-800',   instructor:'Tanaka Sensei',  status:'Open',   statusColor:'bg-green-50 text-green-800', cat:['evening','japanese'] },
@@ -27,13 +28,18 @@ export default function Timetable() {
   return (
     <AppLayout>
       <Head title="Timetable" />
-      <div className="bg-gray-50 border-b border-gray-100 px-6 py-10">
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="bg-gray-50 border-b border-gray-100 px-6 py-10"
+      >
         <div className="max-w-5xl mx-auto">
           <p className="text-xs text-gray-400 mb-2">Home › Timetable</p>
           <h1 className="text-2xl font-medium mb-2">Classes timetable</h1>
           <p className="text-sm text-gray-500 leading-relaxed">Current batch schedules. New batches start every month.</p>
         </div>
-      </div>
+      </motion.div>
       <div className="max-w-5xl mx-auto px-6 py-8">
         <div className="flex gap-2 mb-5 flex-wrap">
           {filters.map(f => (
@@ -54,19 +60,29 @@ export default function Timetable() {
                 ))}
               </tr>
             </thead>
-            <tbody>
-              {visible.map((c, i) => (
-                <tr key={i} className="border-b border-gray-50 last:border-0">
-                  <td className="px-4 py-3 font-medium text-gray-800">{c.programme}</td>
-                  <td className="px-4 py-3 text-gray-500">{c.level}</td>
-                  <td className="px-4 py-3 text-gray-500">{c.days}</td>
-                  <td className="px-4 py-3 text-gray-500">{c.time}</td>
-                  <td className="px-4 py-3"><span className={`text-[10px] font-medium px-2 py-1 rounded-full ${c.batchColor}`}>{c.batch}</span></td>
-                  <td className="px-4 py-3 text-gray-500">{c.instructor}</td>
-                  <td className="px-4 py-3"><span className={`text-[10px] font-medium px-2 py-1 rounded-full ${c.statusColor}`}>{c.status}</span></td>
-                </tr>
-              ))}
-            </tbody>
+            <motion.tbody layout>
+              <AnimatePresence>
+                {visible.map((c, i) => (
+                  <motion.tr 
+                    layout
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.3 }}
+                    key={c.programme + c.time + i}
+                    className="border-b border-gray-50 last:border-0 hover:bg-gray-50 transition-colors"
+                  >
+                    <td className="px-4 py-3 font-medium text-gray-800">{c.programme}</td>
+                    <td className="px-4 py-3 text-gray-500">{c.level}</td>
+                    <td className="px-4 py-3 text-gray-500">{c.days}</td>
+                    <td className="px-4 py-3 text-gray-500">{c.time}</td>
+                    <td className="px-4 py-3"><span className={`text-[10px] font-medium px-2 py-1 rounded-full ${c.batchColor}`}>{c.batch}</span></td>
+                    <td className="px-4 py-3 text-gray-500">{c.instructor}</td>
+                    <td className="px-4 py-3"><span className={`text-[10px] font-medium px-2 py-1 rounded-full ${c.statusColor}`}>{c.status}</span></td>
+                  </motion.tr>
+                ))}
+              </AnimatePresence>
+            </motion.tbody>
           </table>
         </div>
         <p className="text-xs text-gray-400 mt-3">New batches start every month. Contact us to reserve your seat.</p>

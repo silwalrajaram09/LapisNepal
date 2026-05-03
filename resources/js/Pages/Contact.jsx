@@ -2,6 +2,20 @@ import { useState } from "react";
 import { useForm, usePage, Head } from "@inertiajs/react";
 import AppLayout from "@/layouts/AppLayouts";
 import HeroSlider from "@/Components/HeroSlider";
+import { motion } from "framer-motion";
+
+const fadeUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+};
+
+const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.1 }
+    }
+};
 
 export default function Contact() {
     const { flash } = usePage().props;
@@ -33,7 +47,12 @@ export default function Contact() {
     return (
         <AppLayout>
             <Head title="Contact" />
-            <div className="bg-gray-50 border-b border-gray-100 px-6 py-10">
+            <motion.div 
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="bg-gray-50 border-b border-gray-100 px-6 py-10"
+            >
                 <div className="max-w-5xl mx-auto">
                     <p className="text-xs text-gray-400 mb-2">Home › Contact</p>
                     <h1 className="text-2xl font-medium mb-2">Get in touch</h1>
@@ -42,11 +61,22 @@ export default function Contact() {
                         available for students only.
                     </p>
                 </div>
-            </div>
-            <h2 className="text-2xl text-center font-bold ">Contact us </h2>
+            </motion.div>
+            <motion.h2 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="text-2xl text-center font-bold mt-8"
+            >
+                Contact us 
+            </motion.h2>
             <div className="max-w-5xl mx-auto px-6 py-8 grid grid-cols-2 gap-6">
                 {/* Form */}
-                <div>
+                <motion.div
+                    variants={staggerContainer}
+                    initial="hidden"
+                    animate="visible"
+                >
                     <h2 className="text-base font-medium mb-4">
                         Send us a message
                     </h2>
@@ -67,7 +97,8 @@ export default function Contact() {
                         </div>
                     )}
 
-                    <form
+                    <motion.form
+                        variants={fadeUp}
                         onSubmit={submit}
                         className="border border-gray-100 rounded-xl p-5 flex flex-col gap-3"
                     >
@@ -187,17 +218,21 @@ export default function Contact() {
                                 WhatsApp
                             </span>
                         </a>
-                    </form>
-                </div>
+                    </motion.form>
+                </motion.div>
 
                 {/* Offices */}
-                <div>
-                    <h2 className="text-base font-medium mb-4">Our offices</h2>
+                <motion.div
+                    variants={staggerContainer}
+                    initial="hidden"
+                    animate="visible"
+                >
+                    <motion.h2 variants={fadeUp} className="text-base font-medium mb-4">Our offices</motion.h2>
                     {[
                         {
                             flag: "🇳🇵",
                             label: "Nepal office — Kathmandu",
-                            address: "[Add your Nepal address]",
+                            address: "Baneshwor, Kathmandu, Nepal",
                             phone: "9805682958",
                             hours: "Sun–Fri, 7:00 am – 6:00 pm",
                             liaison: null,
@@ -205,19 +240,21 @@ export default function Contact() {
                         {
                             flag: "🇯🇵",
                             label: "Japan office",
-                            address: "[Add your Japan address]",
+                            address: "Tokyo, Japan",
                             phone: null,
                             hours: null,
                             liaison: "Keiko Yamamoto",
                         },
                     ].map((office) => (
-                        <div
+                        <motion.div
+                            variants={fadeUp}
+                            whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
                             key={office.label}
-                            className="border border-gray-100 rounded-xl p-4 mb-3"
+                            className="border border-gray-100 rounded-xl p-4 mb-3 bg-white transition-shadow cursor-pointer"
                         >
                             <div className="text-sm font-medium mb-3 flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-blue-600 inline-block" />
-                                {office.label}
+                                {/* <span className="w-2 h-2 rounded-full bg-blue-600 inline-block" /> */}
+                                {office.flag}{office.label}
                             </div>
                             <div className="text-[11px] text-gray-400 mb-0.5">
                                 Address
@@ -260,9 +297,9 @@ export default function Contact() {
                                     Map embed
                                 </span>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </AppLayout>
     );
