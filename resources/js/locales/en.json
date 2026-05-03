@@ -6,7 +6,11 @@
     "licenses": "Licenses",
     "staff": "Staff",
     "timetable": "Timetable",
-    "contact": "Contact"
+    "contact": "Contact",
+    "logo-text": "Lapis Nepal",
+    "logo-subText":" Study Abroad/Japan & Language Institute"
+
+
   },
   "apply": "Apply now",
   "tagline": "Study Abroad/Japan & Language Institute",
@@ -25,5 +29,16 @@
     "ssw": "SSW curriculum",
     "titp": "TITP curriculum",
     "internship": "Internship"
+  },
+  "home": {
+    "title": "Your pathway to ",
+    "japan":"Japan",
+    "starts-here":"starts here",
+    "subtitle": "Nepal's trusted Japan gateway",
+    "description":" Official study abroad consultancy licensed by Nepal's Ministry of Education and Japan. Offering Japanese language, SSW, TITP and internship programmes.",
+    "explore":"Explore Courses",
+    "getInTouch":" Get in touch"
+    
+
   }
 }

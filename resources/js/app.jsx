@@ -6,6 +6,9 @@ import AppLayout from './layouts/AppLayouts'
 // Import CSS
 import '../css/app.css'
 
+// Import i18n
+import './i18n'
+
 // Eager load all pages
 const pages = import.meta.glob('./Pages/**/*.jsx', { eager: true })
 
