@@ -148,7 +148,8 @@ export default function Home({ stats }) {
                                 MoE licensed — Nepal &amp; Japan
                             </div>
                             <div className="text-xs text-blue-600">
-                                Sandee branch + Japan branch
+                                {/* Sandee branch + Japan branch */}
+                                Dual licensed by the Ministry of Education in both Nepal and Japan, including the branch-in-Nepal licence.
                             </div>
                         </div>
                     </motion.div>
