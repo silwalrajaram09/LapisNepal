@@ -126,12 +126,12 @@ export default function Timetable() {
                 </div>
             </motion.div>
             <div className="max-w-5xl mx-auto px-6 py-8">
-                <div className="flex flex-wrap gap-2 mb-5 -mx-1 overflow-x-auto pb-1 sm:pb-0 sm:overflow-visible sm:-mx-0">
+                <div className="flex flex-wrap gap-2 mb-5 -mx-1 overflow-x-auto pb-2 sm:pb-0 sm:overflow-visible sm:-mx-0">
                     {filters.map((f) => (
                         <button
                             key={f.value}
                             onClick={() => setActive(f.value)}
-                            className={`text-xs font-medium px-4 py-1.5 rounded-full border transition-all ${
+                            className={`text-xs font-medium px-3 py-1.5 rounded-full border transition-all whitespace-nowrap ${
                                 active === f.value
                                     ? "bg-blue-700 text-white border-blue-700"
                                     : "border-gray-200 text-gray-500 bg-white hover:border-gray-400"
@@ -141,8 +141,8 @@ export default function Timetable() {
                         </button>
                     ))}
                 </div>
-                <div className="border border-gray-100 rounded-xl overflow-hidden">
-                    <table className="w-full text-xs">
+                <div className="w-full overflow-x-auto">
+                    <table className="w-full text-xs min-w-[750px]">
                         <thead>
                             <tr className="bg-gray-50 border-b border-gray-100">
                                 {[
@@ -156,7 +156,7 @@ export default function Timetable() {
                                 ].map((h) => (
                                     <th
                                         key={h}
-                                        className="text-left px-4 py-3 text-[11px] font-medium text-gray-400"
+                                        className="text-left px-3 py-3 font-medium text-gray-400 text-[12px]"
                                     >
                                         {h}
                                     </th>
@@ -175,31 +175,31 @@ export default function Timetable() {
                                         key={c.programme + c.time + i}
                                         className="border-b border-gray-50 last:border-0 hover:bg-gray-50 transition-colors"
                                     >
-                                        <td className="px-4 py-3 font-medium text-gray-800">
+                                        <td className="px-2 py-2 font-medium text-gray-800 text-[13px]">
                                             {c.programme}
                                         </td>
-                                        <td className="px-4 py-3 text-gray-500">
+                                        <td className="px-2 py-2 text-gray-500 text-[12px]">
                                             {c.level}
                                         </td>
-                                        <td className="px-4 py-3 text-gray-500">
+                                        <td className="px-2 py-2 text-gray-500 text-[12px]">
                                             {c.days}
                                         </td>
-                                        <td className="px-4 py-3 text-gray-500">
+                                        <td className="px-2 py-2 text-gray-500 text-[12px]">
                                             {c.time}
                                         </td>
-                                        <td className="px-4 py-3">
+                                        <td className="px-2 py-2">
                                             <span
-                                                className={`text-[10px] font-medium px-2 py-1 rounded-full ${c.batchColor}`}
+                                                className={`text-[9px] font-medium px-1.5 py-0.5 rounded-full ${c.batchColor}`}
                                             >
                                                 {c.batch}
                                             </span>
                                         </td>
-                                        <td className="px-4 py-3 text-gray-500">
+                                        <td className="px-2 py-2 text-gray-500 text-[12px]">
                                             {c.instructor}
                                         </td>
-                                        <td className="px-4 py-3">
+                                        <td className="px-2 py-2">
                                             <span
-                                                className={`text-[10px] font-medium px-2 py-1 rounded-full ${c.statusColor}`}
+                                                className={`text-[9px] font-medium px-1.5 py-0.5 rounded-full ${c.statusColor}`}
                                             >
                                                 {c.status}
                                             </span>

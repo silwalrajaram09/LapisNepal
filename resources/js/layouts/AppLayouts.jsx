@@ -28,7 +28,7 @@ export default function AppLayout({ children }) {
             {/* Navbar max-w-5xl mx-auto px-6 py-16 grid grid-cols-2 gap-12 items-center*/}
             <nav className="px-4 md:px-6 lg:px-16 py-4 md:py-6 lg:py-10 sticky top-0 z-50 bg-white border-b border-gray-100 flex items-center justify-between h-14 md:h-16 lg:h-[80px] shadow-sm">
                 <Link href="/" className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 bg-blue-700 rounded-lg flex items-center justify-center shrink-0">
+                    <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center shrink-0 shadow-md">
                         <svg className="w-4 h-4 fill-white" viewBox="0 0 20 20">
                             <path d="M10 2L2 7v6l8 5 8-5V7L10 2zm0 2.5L16 8l-6 3.75L4 8l6-3.5z" />
                         </svg>
