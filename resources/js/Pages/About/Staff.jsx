@@ -97,7 +97,7 @@ export default function Staff({ staffMembers }) {
 
                 {/* Staff grid */}
                 <h2 className="text-base font-medium mb-4">Our team</h2>
-                <div className="grid grid-cols-3 gap-4 mb-8">
+                <div className="space-y-4 md:gap-6 mb-8 flex flex-col">
                     {displayStaff.map((s) => (
                         <div
                             key={s.id || s.name}
@@ -125,7 +125,7 @@ export default function Staff({ staffMembers }) {
                 <h2 className="text-base font-medium mb-4">
                     Administrative structure
                 </h2>
-                <div className="grid grid-cols-4 gap-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
                     {structure.map((s) => (
                         <div
                             key={s.title}
